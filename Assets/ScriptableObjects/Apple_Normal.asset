@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Apple_Normal
   m_EditorClassIdentifier: 
   fruitName: Apple
-  sprite: {fileID: 0}
+  prefab: {fileID: 59961231662465505, guid: 4ed9a2fe7b056db4cbe0409cb8079844, type: 3}
   type: 0
   spawnWeight: 0.5
-  scoreValue: 0
-  smoothieValue: 0
+  scoreValue: 1
+  smoothieValue: 10

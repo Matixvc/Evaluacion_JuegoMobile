@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apple_Rotten
   m_EditorClassIdentifier: 
   fruitName: Apple
-  sprite: {fileID: 0}
+  prefab: {fileID: 5136539197563951282, guid: 4d20f451f58c0254e80a5f8cc8c75f93, type: 3}
   type: 1
   spawnWeight: 0.3
   scoreValue: -1

@@ -13,9 +13,24 @@ public class FruitSpawner : MonoBehaviour
     public void SpawnFruit()
     {
         FruitData selected = GetWeightedRandom();
-        if (selected == null || selected.prefab == null) return;
+        //if (selected == null)
+        //{
+        //    Debug.LogError("Revisar Lista de fruta");
+        //}
+        //else if (selected.prefab == null)
+        //{
+        //    Debug.LogError("No tiene Fruta Prefab");
+        //}
 
+        //if (selected != null || selected.prefab != null)
+        //{
+        //    Debug.LogWarning("AAAAAA");
+        //    return;
+
+        //}
+        //else if (selected != null) { }
         GameObject fruit = Instantiate(selected.prefab, spawnPoint.position, Random.rotation);
+
 
         // Fuerza aleatoria para que salga disparada
         if (fruit.TryGetComponent(out Rigidbody rb))

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apple_Bonus
   m_EditorClassIdentifier: 
   fruitName: Apple
-  sprite: {fileID: 0}
+  prefab: {fileID: 1205918779529553765, guid: 4fe7cfc520b2e784ea8fe3f9247bace9, type: 3}
   type: 2
   spawnWeight: 0.05
   scoreValue: 3

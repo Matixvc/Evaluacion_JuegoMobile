@@ -21,10 +21,18 @@ public class TreeController : MonoBehaviour
         if (touch.phase != TouchPhase.Began) return;
 
         Ray ray = _cam.ScreenPointToRay(touch.position);
-        if (!Physics.Raycast(ray, out RaycastHit hit)) return;
-        if (hit.collider.GetComponent<FruitObject>() != null) return;
-        if (hit.collider.gameObject != gameObject) return;
-        if (Time.time - _lastTapTime < tapCooldown) return;
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+
+        }
+        if (!hit.collider == true || hit.collider.GetComponent<FruitObject>() == true)
+        {
+            return;
+        }
+        if (Time.time - _lastTapTime < tapCooldown)
+        {
+            return;
+        }
 
         _lastTapTime = Time.time;
         OnTapped();
@@ -33,11 +41,11 @@ public class TreeController : MonoBehaviour
     void OnTapped()
     {
         animator.SetTrigger("Shake");
-
+        fruitSpawner.SpawnFruit();
+        print("llegue");
 #if UNITY_ANDROID && !UNITY_EDITOR
         Handheld.Vibrate();
 #endif
 
-        fruitSpawner.SpawnFruit();
     }
 }
