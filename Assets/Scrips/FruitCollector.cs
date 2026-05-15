@@ -12,24 +12,38 @@ public class FruitCollector : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount == 0) return;
-        Touch touch = Input.GetTouch(0);
-        if (touch.phase != TouchPhase.Began) return;
+        if (!TryGetTapPosition(out Vector2 screenPos)) return;
 
-        Ray ray = _cam.ScreenPointToRay(touch.position);
+        Ray ray = _cam.ScreenPointToRay(screenPos);
         if (!Physics.Raycast(ray, out RaycastHit hit)) return;
 
-        FruitObject fruit = hit.collider.GetComponent<FruitObject>();
-        if (fruit == null) return;
-
-        OnFruitTapped(fruit);
+        if (!FruitTapHandler.TryCollect(hit.collider)) return;
+        UpdateScoreUI();
     }
 
-    void OnFruitTapped(FruitObject fruit)
+    static bool TryGetTapPosition(out Vector2 screenPos)
     {
-        GameManager.Instance.CollectFruit(fruit.data);
-        UpdateScoreUI();
-        Destroy(fruit.gameObject);
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase != TouchPhase.Began)
+            {
+                screenPos = default;
+                return false;
+            }
+            screenPos = touch.position;
+            return true;
+        }
+
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
+            screenPos = Input.mousePosition;
+            return true;
+        }
+#endif
+        screenPos = default;
+        return false;
     }
 
     void UpdateScoreUI()

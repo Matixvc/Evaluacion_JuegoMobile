@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public InventoryData inventory;
     public PlayerData playerData;
     public TreeData[] allTrees;
+    public FruitData[] allFruits;
 
     [Header("Estado actual")]
     public TreeData currentTree;
@@ -22,6 +23,26 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        LoadProgress();
+    }
+
+    void OnApplicationPause(bool paused)
+    {
+        if (paused) SaveProgress();
+    }
+
+    void OnApplicationQuit() => SaveProgress();
+
+    public void LoadProgress()
+    {
+        SaveManager.LoadPlayer(playerData);
+        SaveManager.LoadInventory(inventory, allFruits);
+    }
+
+    public void SaveProgress()
+    {
+        SaveManager.SavePlayer(playerData);
+        SaveManager.SaveInventory(inventory);
     }
 
     // ── Navegación ──────────────────────────────────────
@@ -32,13 +53,18 @@ public class GameManager : MonoBehaviour
     // ── Fruta ───────────────────────────────────────────
     public void CollectFruit(FruitData fruit)
     {
+        if (fruit == null) return;
+
         if (fruit.type == FruitType.Rotten)
         {
-            playerData.AddScore(fruit.scoreValue); // scoreValue = -1
+            playerData.AddScore(fruit.scoreValue);
+            SaveProgress();
             return;
         }
+
         inventory.AddFruit(fruit);
         playerData.AddScore(fruit.scoreValue);
+        SaveProgress();
     }
 
     // ── Tienda ──────────────────────────────────────────

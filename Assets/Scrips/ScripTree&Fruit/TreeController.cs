@@ -16,36 +16,55 @@ public class TreeController : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount == 0) return;
-        Touch touch = Input.GetTouch(0);
-        if (touch.phase != TouchPhase.Began) return;
+        if (!TryGetTapPosition(out Vector2 screenPos)) return;
 
-        Ray ray = _cam.ScreenPointToRay(touch.position);
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
+        Ray ray = _cam.ScreenPointToRay(screenPos);
+        if (!Physics.Raycast(ray, out RaycastHit hit)) return;
 
-        }
-        if (!hit.collider == true || hit.collider.GetComponent<FruitObject>() == true)
-        {
+        if (FruitTapHandler.TryCollect(hit.collider))
             return;
-        }
-        if (Time.time - _lastTapTime < tapCooldown)
+
+        if (hit.collider.gameObject == gameObject || hit.collider.CompareTag("Arbol"))
         {
-            return;
+            if (Time.time - _lastTapTime >= tapCooldown)
+            {
+                _lastTapTime = Time.time;
+                OnTapped();
+            }
+        }
+    }
+
+    static bool TryGetTapPosition(out Vector2 screenPos)
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase != TouchPhase.Began)
+            {
+                screenPos = default;
+                return false;
+            }
+            screenPos = touch.position;
+            return true;
         }
 
-        _lastTapTime = Time.time;
-        OnTapped();
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
+            screenPos = Input.mousePosition;
+            return true;
+        }
+#endif
+        screenPos = default;
+        return false;
     }
 
     void OnTapped()
     {
         animator.SetTrigger("Shake");
         fruitSpawner.SpawnFruit();
-        print("llegue");
 #if UNITY_ANDROID && !UNITY_EDITOR
         Handheld.Vibrate();
 #endif
-
     }
 }
