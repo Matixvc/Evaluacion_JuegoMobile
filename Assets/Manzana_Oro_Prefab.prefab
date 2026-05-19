@@ -19610,7 +19610,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b1daa377f9c942840b0132d4314acaa8, type: 2}
+  isCollected: 0
   destroyBelowY: -10
+  lifetimeOnGround: 5
 --- !u!114 &4473353867863750951
 MonoBehaviour:
   m_ObjectHideFlags: 0

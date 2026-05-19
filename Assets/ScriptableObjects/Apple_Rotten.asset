@@ -17,4 +17,4 @@ MonoBehaviour:
   type: 1
   spawnWeight: 0.3
   scoreValue: -1
-  smoothieValue: 10
+  smoothieValue: 0

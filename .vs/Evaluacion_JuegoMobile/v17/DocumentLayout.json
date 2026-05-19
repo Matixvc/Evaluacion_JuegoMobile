@@ -3,20 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|c:\\users\\matia\\onedrive\\documentos\\evaluacion_juegomobile\\assets\\scrips\\scripdata\\fruitdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scripdata\\fruitdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|c:\\users\\matia\\onedrive\\documentos\\evaluacion_juegomobile\\assets\\scrips\\scripui\\blendercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scripui\\blendercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scriptree\u0026fruit\\treecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scriptree\u0026fruit\\treecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scripui\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scripui\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\shopcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\shopcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\fruitcollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\fruitcollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scriptree\u0026fruit\\fruitobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scriptree\u0026fruit\\fruitobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\panelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\panelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scriptree\u0026fruit\\treecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scriptree\u0026fruit\\treecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scripdata\\fruitdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scripdata\\fruitdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scriptree\u0026fruit\\fruittaphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scriptree\u0026fruit\\fruittaphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scripdata\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scripdata\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scripdata\\inventorydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scripdata\\inventorydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scripdata\\playerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scripdata\\playerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\scrips\\scriptree\u0026fruit\\fruitspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D1E996CF-0FAE-56A3-5FE9-C9455EE8694F}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\scriptree\u0026fruit\\fruitspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\assets\\pausemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\pausemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +70,188 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FruitData.cs",
-              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\FruitData.cs",
-              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripDATA\\FruitData.cs",
-              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\FruitData.cs",
-              "RelativeToolTip": "Assets\\Scrips\\ScripDATA\\FruitData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ShopController.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ShopController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ShopController.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ShopController.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ShopController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwDAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T17:48:20.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T03:10:32.336Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "FruitCollector.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\FruitCollector.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\FruitCollector.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\FruitCollector.cs",
+              "RelativeToolTip": "Assets\\Scrips\\FruitCollector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T03:10:40.471Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "FruitObject.cs",
               "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitObject.cs",
               "RelativeDocumentMoniker": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitObject.cs",
               "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitObject.cs",
               "RelativeToolTip": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitObject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAkwF4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T17:03:56.383Z"
+              "WhenOpened": "2026-05-19T01:37:27.57Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FruitSpawner.cs",
-              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
-              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
-              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
-              "RelativeToolTip": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAQwA0AAAAFAAAAAAAAAA==",
+              "DocumentIndex": 14,
+              "Title": "PauseMenu.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\PauseMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\PauseMenu.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\PauseMenu.cs",
+              "RelativeToolTip": "Assets\\PauseMenu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T17:02:44.361Z"
+              "WhenOpened": "2026-05-19T02:34:24.367Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
+              "Title": "PanelManager.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\PanelManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\PanelManager.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\PanelManager.cs",
+              "RelativeToolTip": "Assets\\Scrips\\PanelManager.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwCsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T02:28:47.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SaveManager.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\SaveManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripDATA\\SaveManager.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\SaveManager.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripDATA\\SaveManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T02:21:10.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TreeController.cs",
               "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\TreeController.cs",
               "RelativeDocumentMoniker": "Assets\\Scrips\\ScripTree\u0026Fruit\\TreeController.cs",
               "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\TreeController.cs",
               "RelativeToolTip": "Assets\\Scrips\\ScripTree\u0026Fruit\\TreeController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAxwCUAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwDgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T17:01:55.058Z"
+              "WhenOpened": "2026-05-19T01:22:22.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\GameManager.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scrips\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T01:47:38.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BlenderController.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripUI\\BlenderController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripUI\\BlenderController.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripUI\\BlenderController.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripUI\\BlenderController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwEgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T02:23:14.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InventoryUI.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripUI\\InventoryUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripUI\\InventoryUI.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripUI\\InventoryUI.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripUI\\InventoryUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T02:17:55.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FruitTapHandler.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitTapHandler.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitTapHandler.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitTapHandler.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitTapHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T02:22:26.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "InventoryData.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\InventoryData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripDATA\\InventoryData.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\InventoryData.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripDATA\\InventoryData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T01:55:56.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PlayerData.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\PlayerData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripDATA\\PlayerData.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\PlayerData.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripDATA\\PlayerData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T01:50:18.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FruitData.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\FruitData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripDATA\\FruitData.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripDATA\\FruitData.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripDATA\\FruitData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T01:47:31.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FruitSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
+              "ToolTip": "C:\\Users\\matia\\OneDrive\\Documentos\\Evaluacion_JuegoMobile\\Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
+              "RelativeToolTip": "Assets\\Scrips\\ScripTree\u0026Fruit\\FruitSpawner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T01:37:22.497Z"
             }
           ]
         }

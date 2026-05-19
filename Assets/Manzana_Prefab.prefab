@@ -98,7 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 0976f8c8b9311da40912a24667f81a56, type: 2}
+  isCollected: 0
   destroyBelowY: -10
+  lifetimeOnGround: 10
 --- !u!114 &5774293590633512204
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,13 +16,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        playerData.Reset(); // limpia antes de cargar
         LoadProgress();
     }
 
@@ -76,4 +73,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void SelectTree(TreeData tree) => currentTree = tree;
+
+    //TEMPORAL
+    //[ContextMenu("Debug Inventory")]
+    //void DebugInventory()
+    //{
+    //    foreach (var slot in inventory.slots)
+    //        Debug.Log($"{slot.fruit.fruitName}: {slot.quantity}");
+    //}
 }
