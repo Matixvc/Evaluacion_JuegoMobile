@@ -9,11 +9,11 @@ public static class SaveManager
 
     [Serializable] public class PlayerSave { public int gold; public int score; }
 
+    // Simplificamos la estructura de guardado a una sola lista de entradas
     [Serializable]
     public class InventorySave
     {
-        public List<FruitSaveEntry> normalEntries = new();
-        public List<FruitSaveEntry> goldEntries = new();
+        public List<FruitSaveEntry> entries = new();
     }
 
     [Serializable]
@@ -35,17 +35,20 @@ public static class SaveManager
         data.score = save.score;
     }
 
-    // ── Inventory ───────────────────────────────────────
+    // ── Inventory (Modificado para usar la lista única de carreras) ──────
     public static void SaveInventory(InventoryData inventory)
     {
         if (inventory == null) return;
         var save = new InventorySave();
 
-        foreach (var e in inventory.normalFruits)
-            if (e.fruit != null) save.normalEntries.Add(new FruitSaveEntry { fruitName = e.fruit.fruitName, count = e.count });
-
-        foreach (var e in inventory.goldFruits)
-            if (e.fruit != null) save.goldEntries.Add(new FruitSaveEntry { fruitName = e.fruit.fruitName, count = e.count });
+        // Recorremos la nueva lista unificada de tu InventoryData
+        foreach (var e in inventory.collectedFruits)
+        {
+            if (e.fruit != null)
+            {
+                save.entries.Add(new FruitSaveEntry { fruitName = e.fruit.fruitName, count = e.count });
+            }
+        }
 
         PlayerPrefs.SetString(InventoryKey, JsonUtility.ToJson(save));
         PlayerPrefs.Save();
@@ -59,18 +62,17 @@ public static class SaveManager
 
         var save = JsonUtility.FromJson<InventorySave>(PlayerPrefs.GetString(InventoryKey));
 
-        foreach (var e in save.normalEntries)
+        // Reconstruimos usando el único bucle de la lista general
+        foreach (var e in save.entries)
         {
             FruitData fruit = Find(catalog, e.fruitName);
             if (fruit == null) continue;
-            for (int i = 0; i < e.count; i++) inventory.AddFruit(fruit);
-        }
 
-        foreach (var e in save.goldEntries)
-        {
-            FruitData fruit = Find(catalog, e.fruitName);
-            if (fruit == null) continue;
-            for (int i = 0; i < e.count; i++) inventory.AddGoldFruit(fruit);
+            // Agrega la manzana al inventario respetando la cantidad guardada
+            for (int i = 0; i < e.count; i++)
+            {
+                inventory.AddFruit(fruit);
+            }
         }
     }
 

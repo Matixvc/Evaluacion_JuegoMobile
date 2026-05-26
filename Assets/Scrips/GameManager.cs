@@ -43,24 +43,20 @@ public class GameManager : MonoBehaviour
     }
 
     // ── Navegación ──────────────────────────────────────
-    public void GoToTree() => SceneManager.LoadScene("TreeScene");
-    public void GoToBlender() => SceneManager.LoadScene("BlenderScene");
-    public void GoToShop() => SceneManager.LoadScene("ShopScene");
+    //public void GoToTree() => SceneManager.LoadScene("TreeScene");
+    //public void GoToBlender() => SceneManager.LoadScene("BlenderScene");
+    //public void GoToShop() => SceneManager.LoadScene("ShopScene");
 
-    // ── Fruta ───────────────────────────────────────────
+    // ── Fruta (CORREGIDO PARA EL SISTEMA DE CARRERAS) ────
     public void CollectFruit(FruitData fruit)
     {
         if (fruit == null) return;
 
-        if (fruit.type == FruitType.Rotten)
-        {
-            playerData.AddScore(fruit.scoreValue);
-            SaveProgress();
-            return;
-        }
-
+        // CORRECCIÓN: Eliminamos el switch/if de FruitType.Rotten.
+        // Ahora toda manzana recolectada entra directo al inventario único.
         inventory.AddFruit(fruit);
         playerData.AddScore(fruit.scoreValue);
+
         SaveProgress();
     }
 
@@ -73,12 +69,4 @@ public class GameManager : MonoBehaviour
     }
 
     public void SelectTree(TreeData tree) => currentTree = tree;
-
-    //TEMPORAL
-    //[ContextMenu("Debug Inventory")]
-    //void DebugInventory()
-    //{
-    //    foreach (var slot in inventory.slots)
-    //        Debug.Log($"{slot.fruit.fruitName}: {slot.quantity}");
-    //}
 }

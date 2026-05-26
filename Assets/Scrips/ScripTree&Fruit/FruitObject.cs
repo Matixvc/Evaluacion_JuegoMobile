@@ -1,56 +1,45 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class FruitObject : MonoBehaviour
 {
     [Header("Data")]
     public FruitData data;
 
-    [Header("Lifetime (configurar en Inspector o via FruitData)")]
-    public float lifetimeNormal = 10f;
-    public float lifetimeGold = 5f;
-    public float lifetimeRotten = 7f;
-    public float destroyBelowY = -10f;
+    [Header("Configuraciï¿½n")]
+    public float destroyBelowY = -10f; // Por si cae de la isla al vacï¿½o
 
     public bool isCollected { get; private set; }
 
-    private bool _onGround = false;
-    private float _groundTimer = 0f;
-    private float _lifetime = 10f;
+    private Rigidbody _rb;
 
     void Start()
     {
-        if (data == null) return;
-        _lifetime = data.type switch
+        _rb = GetComponent<Rigidbody>();
+
+        if (data == null)
         {
-            FruitType.Bonus => lifetimeGold,
-            FruitType.Rotten => lifetimeRotten,
-            _ => lifetimeNormal
-        };
+            Debug.LogError($"Falta asignar el FruitData en {gameObject.name}");
+            return;
+        }
+
+        // Aplicamos la fricciï¿½n de rotaciï¿½n ï¿½nica de esta manzana
+        if (_rb != null)
+        {
+            _rb.angularDamping = data.angularDrag;
+        }
     }
 
     void Update()
     {
         if (transform.position.y < destroyBelowY)
-        { 
+        {
             Destroy(gameObject);
             return;
         }
-
-        if (!_onGround) return;
-
-        _groundTimer += Time.deltaTime;
-        if (_groundTimer >= _lifetime)
-            Expire();
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (_onGround) return; // ya procesado
-        if (!collision.gameObject.CompareTag("Suelo")) return;
-        _onGround = true;
-        _groundTimer = 0f;
-    }
-    // Llamado al tocar la fruta
+    // Llamado al tocar la manzana con el Touch
     public void Collect()
     {
         if (isCollected) return;
@@ -58,37 +47,11 @@ public class FruitObject : MonoBehaviour
 
         if (data == null) { Destroy(gameObject); return; }
 
-        switch (data.type)
-        {
-            case FruitType.Normal:
-                GameManager.Instance.inventory.AddFruit(data);
-                GameManager.Instance.playerData.AddScore(data.scoreValue);
-                break;
+        // Guardamos la manzana en la lista ï¿½nica del inventario
+        GameManager.Instance.inventory.AddFruit(data);
 
-            case FruitType.Bonus:
-                GameManager.Instance.inventory.AddGoldFruit(data);
-                GameManager.Instance.playerData.AddScore(data.scoreValue);
-                break;
-
-            case FruitType.Rotten:
-                // 0 puntos al tocar — solo destruir
-                break;
-        }
-
+        // Guardamos el progreso en el SaveManager automï¿½ticamente
         GameManager.Instance.SaveProgress();
-        Destroy(gameObject);
-    }
-
-    // Llamado al expirar sin ser tocada
-    void Expire()
-    {
-        if (isCollected) return;
-
-        if (data != null && data.type == FruitType.Rotten)
-        {
-            GameManager.Instance?.playerData.AddScore(data.scoreValue); // scoreValue negativo
-            GameManager.Instance?.SaveProgress();
-        }
 
         Destroy(gameObject);
     }
