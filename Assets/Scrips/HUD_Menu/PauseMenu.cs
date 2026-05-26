@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -24,8 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToGranja()
     {
-        ClosePause();
-        PanelManager.Instance.ShowBlender();
+        SceneManager.LoadScene("Granja");
     }
 
     public void GoToInventario()
