@@ -17,6 +17,15 @@ public class FruitObject : MonoBehaviour
     [Tooltip("Brillos extra (solo para la fruta de oro).")]
     public ParticleSystem sistemaSparkles;
 
+    [Header("Referencias de Audio (SFX)")]
+    [Tooltip("Componente AudioSource de la fruta.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Sonido de impacto para manzana Normal.")]
+    [SerializeField] private AudioClip sonidoImpactoNormal;
+    [Tooltip("Sonido de impacto brillante para la manzana de Oro.")]
+    [SerializeField] private AudioClip sonidoImpactoOro;
+    [Range(0f, 1f)][SerializeField] private float volumenSFX = 0.8f;
+
     public bool isCollected { get; private set; }
 
     private Rigidbody _rb;
@@ -34,11 +43,16 @@ public class FruitObject : MonoBehaviour
             return;
         }
 
+        // Configuración automática y óptima del AudioSource para Mobile
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f; // 2D completo para que suene con fuerza y nitidez en celulares
+
         // Aplicamos la fricción de rotación única de esta manzana
         if (_rb != null)
         {
-            // Nota: En versiones nuevas de Unity se usa angularDamping, en anteriores angularDrag.
-            // Dejamos angularDamping que es el que tenías en tu script original.
             _rb.angularDamping = data.angularDrag;
         }
 
@@ -73,7 +87,7 @@ public class FruitObject : MonoBehaviour
         }
     }
 
-    // LÓGICA DE DETECCIÓN DE SUELO (Para activar tus partículas)
+    // LÓGICA DE DETECCIÓN DE SUELO (Partículas, Audio y Vibración)
     void OnCollisionEnter(Collision collision)
     {
         // Recuerda ponerle el Tag "Suelo" al piso de tu escena
@@ -81,16 +95,43 @@ public class FruitObject : MonoBehaviour
         {
             _haImpactadoSuelo = true;
 
+            // 1. Manejo de Partículas
             if (sistemaTrail != null) sistemaTrail.Stop();
-            if (sistemaImpacto != null) sistemaImpacto.Play();
-
-            // Si es de oro, vibra el celular Android al caer al suelo
-            if (data != null && data.isGoldenFruit)
+            if (sistemaImpacto != null)
             {
+                sistemaImpacto.transform.rotation = Quaternion.identity;
+                sistemaImpacto.transform.parent = null;
+                sistemaImpacto.Play();
+            }
+
+            // 2. Manejo de Audio Diferenciado (Rúbrica: Coherencia Acústica)
+            if (data != null)
+            {
+                // Variación sutil de tono para evitar monotonía (Game Feel)
+                audioSource.pitch = Random.Range(0.9f, 1.1f);
+
+                if (data.isGoldenFruit)
+                {
+                    // Audio Manzana de Oro (Metálico / Mágico)
+                    if (sonidoImpactoOro != null)
+                    {
+                        audioSource.PlayOneShot(sonidoImpactoOro, volumenSFX);
+                    }
+
+                    // Vibración exclusiva en Android
 #if UNITY_ANDROID && !UNITY_EDITOR
-                Handheld.Vibrate();
+                    Handheld.Vibrate();
 #endif
-                Debug.Log($"🌟 ¡Fruta de Oro {data.fruitName} aterrizó!");
+                    Debug.Log($"🌟 ¡Fruta de Oro {data.fruitName} aterrizó!");
+                }
+                else
+                {
+                    // Audio Manzana Normal (Opaco / Orgánico)
+                    if (sonidoImpactoNormal != null)
+                    {
+                        audioSource.PlayOneShot(sonidoImpactoNormal, volumenSFX);
+                    }
+                }
             }
         }
     }

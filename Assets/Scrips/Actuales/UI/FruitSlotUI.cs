@@ -22,7 +22,7 @@ public class FruitSlotUI : MonoBehaviour
         else
         {
             nombreText.text = "Manzana Normal";
-            nombreText.color = Color.white;
+            nombreText.color = Color.black;
         }
 
         // 2. MOSTRAR EL RESUMEN DEFINITIVO

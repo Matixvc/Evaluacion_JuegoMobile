@@ -7,8 +7,8 @@ public class FruitSpawner : MonoBehaviour
 
     [Header("Config")]
     public Transform spawnPoint;
-    public float spawnForceMin = 2f;
-    public float spawnForceMax = 5f;
+    public float spawnForceMin = 1f;
+    public float spawnForceMax = 3f;
 
     public void SpawnFruit()
     {

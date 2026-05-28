@@ -9,6 +9,13 @@ public class TreeController : MonoBehaviour
     public FruitSpawner fruitSpawner;
     public Renderer treeRenderer;
 
+    [Header("Referencias de Audio (SFX)")]
+    [Tooltip("Componente AudioSource del árbol.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Sonido tipo 'Swoosh' o crujido foliar al golpear el árbol.")]
+    [SerializeField] private AudioClip sonidoGolpeArbol;
+    [Range(0f, 1f)][SerializeField] private float volumenSFX = 0.9f;
+
     [Header("Configuración de Toques")]
     public float tapCooldown = 0.5f;
     private float _lastTapTime = -99f;
@@ -28,6 +35,13 @@ public class TreeController : MonoBehaviour
             _mat = treeRenderer.material;
             _mat.SetFloat("_ShakeIntensity", 0f);
         }
+
+        // Configuración automática y optimizada del AudioSource para Mobile
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f; // Audio 2D nativo para que suene nítido en el canal móvil
     }
 
     void Update()
@@ -49,11 +63,22 @@ public class TreeController : MonoBehaviour
     {
         if (GameManager.Instance != null && GameManager.Instance.IsHarvestLimitReached()) return;
 
+        // 1. REPRODUCIR AUDIO RECTIVO CON VARIACIÓN (Rúbrica: Coherencia Acústica)
+        if (audioSource != null && sonidoGolpeArbol != null)
+        {
+            // Variación sutil de tono (Pitch) para evitar la fatiga auditiva del jugador
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(sonidoGolpeArbol, volumenSFX);
+        }
+
+        // 2. EFECTO DE SHADER (Vertex Offset Shake)
         if (_shakeCoroutine != null) StopCoroutine(_shakeCoroutine);
         _shakeCoroutine = StartCoroutine(ShakeRoutine());
 
+        // 3. EFECTO VISUAL DE PARTÍCULAS (Sistema Foliar)
         if (particulasHojasImpacto != null) particulasHojasImpacto.Play();
 
+        // 4. INSTANCIACIÓN DE MANZANAS
         if (fruitSpawner != null)
         {
             fruitSpawner.SpawnFruit();
