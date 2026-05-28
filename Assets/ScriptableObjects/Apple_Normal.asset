@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruitName: Apple
   prefab: {fileID: 1722465562143075385, guid: ae6f0c861cd509740a544d154036f205, type: 3}
-  type: 0
-  spawnWeight: 0.5
+  icon: {fileID: 0}
+  isGoldenFruit: 0
+  spawnWeight: 0.9
+  topSpeed: 0
+  angularDrag: 0
+  shopValue: 1
   scoreValue: 1
-  smoothieValue: 10
+  velocidadResumen: 0
+  minAngularDrag: 0.1
+  maxAngularDrag: 0.2
+  minTopSpeed: 5
+  maxTopSpeed: 12

@@ -16,7 +16,6 @@ MonoBehaviour:
   prefab: {fileID: 3561615296299338351, guid: a45551a5f40ce0d4fb0c317cca2ab8c0, type: 3}
   possibleFruits:
   - {fileID: 11400000, guid: 0976f8c8b9311da40912a24667f81a56, type: 2}
-  - {fileID: 11400000, guid: e3253f9c27b9a5d4c964e29c6632586d, type: 2}
   - {fileID: 11400000, guid: b1daa377f9c942840b0132d4314acaa8, type: 2}
   unlockCost: 0
   isUnlocked: 1
