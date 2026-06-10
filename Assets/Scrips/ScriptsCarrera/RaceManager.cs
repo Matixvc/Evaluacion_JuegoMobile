@@ -1,38 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections; // Necesario para usar Corrutinas (IEnumerator)
+using System.Collections;
+using UnityEngine.SceneManagement; // Necesario para cambiar de escena
 
 public class RaceManager : MonoBehaviour
 {
     [Header("Puntos de Salida")]
-    [Tooltip("Arrastra aquí los Transforms de las rampas de salida (Rampa 1, Rampa 2, etc.)")]
     public List<Transform> spawnPoints;
 
     [Header("Configuración de Rivales")]
-    [Tooltip("Arrastra aquí el PREFAB de tu Manzana Normal (el que tiene el script FruitObject)")]
     public GameObject manzanaNormalPrefab;
 
     [Header("Configuración por Script (Escala y Física)")]
     [Range(0.1f, 2f)]
-    [Tooltip("Tamaño relativo que se le aplicará a todas las manzanas en la pista de forma automática")]
     public float escalaManzana = 0.5f;
-
-    [Tooltip("Si está activo, congela el movimiento horizontal (X) para que no se caigan de lado en la salida")]
     public bool congelarEjeXAlInicio = false;
 
-    [Header("Valores Razonables para Competidoras Normales (X = Mínimo, Y = Máximo)")]
+    [Header("Valores Razonables para Competidoras Normales")]
     public Vector2 rangoVelocidadNormal = new Vector2(12f, 16f);
     public Vector2 rangoDragNormal = new Vector2(0.15f, 0.35f);
 
     [Header("Fuerza de Salida")]
-    [Tooltip("Pequeño impulso inicial hacia adelante para asegurar que empiecen a rodar por la rampa Bézier")]
     public float impulsoInicial = 5f;
+
+    [Header("Configuración de Escenas")]
+    [Tooltip("Nombre exacto de la escena del árbol para regresar")]
+    public string nombreEscenaArbol = "EscenaArbol";
 
     [HideInInspector]
     public GameObject jugadorInstanciado;
 
-    // Lista interna para manejar los Rigidbodies de todos los corredores
     private List<Rigidbody> _listaCorredores = new List<Rigidbody>();
+    private bool _carreraFinalizada = false;
 
     void Start()
     {
@@ -41,21 +40,10 @@ public class RaceManager : MonoBehaviour
 
     void DesplegarCompetidores()
     {
-        if (spawnPoints == null || spawnPoints.Count < 2)
-        {
-            Debug.LogError("<b>[RaceManager]</b> Por favor asigna al menos 2 o más SpawnPoints en el Inspector.");
-            return;
-        }
+        if (spawnPoints == null || spawnPoints.Count < 2) return;
+        if (manzanaNormalPrefab == null) return;
 
-        if (manzanaNormalPrefab == null)
-        {
-            Debug.LogError("<b>[RaceManager]</b> No has asignado el prefab de la manzana normal en el Inspector.");
-            return;
-        }
-
-        // -------------------------------------------------------------
-        // 1. INSTANCIAR A LA CAMPEONA DEL JUGADOR
-        // -------------------------------------------------------------
+        // 1. INSTANCIAR JUGADOR
         FruitData manzanaJugadorData = GameManager.Instance != null ? GameManager.Instance.selectedRunnerFruit : null;
 
         if (manzanaJugadorData != null)
@@ -64,121 +52,145 @@ public class RaceManager : MonoBehaviour
 
             jugadorInstanciado = Instantiate(prefabJugador, spawnPoints[0].position, spawnPoints[0].rotation);
             jugadorInstanciado.name = "[JUGADOR] " + manzanaJugadorData.fruitName;
-
-            // 👉 1. APLICAR ESCALA POR SCRIPT
             jugadorInstanciado.transform.localScale = Vector3.one * escalaManzana;
 
-            // 👉 2. ELIMINAR EL HIJO "SistemaParticulas"
+            // 👉 ELIMINAR EL HIJO "SistemaParticulas"
             EliminarEfectoParticulas(jugadorInstanciado);
 
-            if (jugadorInstanciado.TryGetComponent(out FruitObject fObject))
-            {
-                fObject.InitializeFruit(manzanaJugadorData);
-            }
+            // Le aseguramos que tenga el script de triggers pegado
+            if (!jugadorInstanciado.GetComponent<RaceTriggers>()) jugadorInstanciado.AddComponent<RaceTriggers>();
 
-            // 👉 3. PREPARAR RIGIDBODY EN ESTADO "QUIETO"
+            if (jugadorInstanciado.TryGetComponent(out FruitObject fObject)) fObject.InitializeFruit(manzanaJugadorData);
             if (jugadorInstanciado.TryGetComponent(out Rigidbody rbJugador))
             {
                 PrepararFisicaInicial(rbJugador);
-                _listaCorredores.Add(rbJugador); // Guardamos para la largada
+                _listaCorredores.Add(rbJugador);
             }
-
-            Debug.Log($"<color=green><b>[Carrera]</b></color> Jugador listo: {manzanaJugadorData.fruitName}");
         }
 
-        // -------------------------------------------------------------
-        // 2. GENERAR RIVALES (Solo manzanas normales con stats aleatorias)
-        // -------------------------------------------------------------
+        // 2. INSTANCIAR RIVALES
         for (int i = 1; i < spawnPoints.Count; i++)
         {
             GameObject rivalInstanciado = Instantiate(manzanaNormalPrefab, spawnPoints[i].position, spawnPoints[i].rotation);
             rivalInstanciado.name = $"[RIVAL] Manzana Normal Bot {i}";
-
-            // 👉 1. APLICAR ESCALA POR SCRIPT
             rivalInstanciado.transform.localScale = Vector3.one * escalaManzana;
 
-            // 👉 2. ELIMINAR EL HIJO "SistemaParticulas"
+            // 👉 ELIMINAR EL HIJO "SistemaParticulas"
             EliminarEfectoParticulas(rivalInstanciado);
+
+            // Le aseguramos que tenga el script de triggers pegado
+            if (!rivalInstanciado.GetComponent<RaceTriggers>()) rivalInstanciado.AddComponent<RaceTriggers>();
 
             FruitData statsBot = ScriptableObject.CreateInstance<FruitData>();
             statsBot.fruitName = $"Rival Normal #{i}";
             statsBot.isGoldenFruit = false;
-
             statsBot.topSpeed = Random.Range(rangoVelocidadNormal.x, rangoVelocidadNormal.y);
             statsBot.angularDrag = Random.Range(rangoDragNormal.x, rangoDragNormal.y);
 
-            if (rivalInstanciado.TryGetComponent(out FruitObject fObjectRival))
-            {
-                fObjectRival.InitializeFruit(statsBot);
-            }
-
-            // 👉 3. PREPARAR RIGIDBODY EN ESTADO "QUIETO"
+            if (rivalInstanciado.TryGetComponent(out FruitObject fObjectRival)) fObjectRival.InitializeFruit(statsBot);
             if (rivalInstanciado.TryGetComponent(out Rigidbody rbRival))
             {
                 PrepararFisicaInicial(rbRival);
-                _listaCorredores.Add(rbRival); // Guardamos para la largada
+                _listaCorredores.Add(rbRival);
             }
         }
 
-        // -------------------------------------------------------------
-        // 3. INICIAR CUENTA REGRESIVA DE 3 SEGUNDOS
-        // -------------------------------------------------------------
         StartCoroutine(CuentaRegresivaCarrera());
     }
 
+    void PrepararFisicaInicial(Rigidbody rb)
+    {
+        rb.isKinematic = true;
+        if (congelarEjeXAlInicio) rb.constraints = RigidbodyConstraints.FreezePositionX;
+    }
+
     /// <summary>
-    /// Busca y destruye permanentemente el objeto hijo llamado SistemaParticulas
+    /// Busca y remueve el objeto de efectos si existe en el prefab instanciado.
     /// </summary>
     void EliminarEfectoParticulas(GameObject manzanaGo)
     {
         Transform hijoParticulas = manzanaGo.transform.Find("SistemaParticulas");
         if (hijoParticulas != null)
         {
-            // Lo destruimos de inmediato para que no consuma recursos ni genere efectos
             Destroy(hijoParticulas.gameObject);
         }
     }
 
-    /// <summary>
-    /// Deja la manzana flotando quieta en el aire cancelando la gravedad al arrancar
-    /// </summary>
-    void PrepararFisicaInicial(Rigidbody rb)
-    {
-        rb.isKinematic = true; // Activar kinematic congela la física por completo
-
-        if (congelarEjeXAlInicio)
-        {
-            rb.constraints = RigidbodyConstraints.FreezePositionX;
-        }
-    }
-
-    /// <summary>
-    /// Corrutina que espera 3 segundos reales y da la orden de salida
-    /// </summary>
     IEnumerator CuentaRegresivaCarrera()
     {
-        Debug.Log("<color=yellow><b>[CARRERA]</b> 3...</color>");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f); // Cuenta de 3 segundos quieto
 
-        Debug.Log("<color=yellow><b>[CARRERA]</b> 2...</color>");
-        yield return new WaitForSeconds(1f);
-
-        Debug.Log("<color=yellow><b>[CARRERA]</b> 1...</color>");
-        yield return new WaitForSeconds(1f);
-
-        Debug.Log("<color=cyan><b>[CARRERA]</b> ¡¡LARGADA!! 🏁</color>");
-
-        // Liberamos las físicas de todos al mismo tiempo
         for (int i = 0; i < _listaCorredores.Count; i++)
         {
             Rigidbody rb = _listaCorredores[i];
             if (rb != null)
             {
-                rb.isKinematic = false; // Desactivamos kinematic para devolver el control a Unity
-
-                // Le aplicamos el empujón inicial usando la rotación de su respectiva rampa
+                rb.isKinematic = false;
                 rb.AddForce(spawnPoints[i].forward * impulsoInicial, ForceMode.VelocityChange);
             }
         }
+    }
+
+    // =================================================================
+    // 💥 CONTROL DE EVENTOS: CAÍDAS Y METAS
+    // =================================================================
+
+    public void ProcesarCaida(GameObject manzana, bool esJugador)
+    {
+        if (_carreraFinalizada) return;
+
+        if (esJugador)
+        {
+            StartCoroutine(FinalizarCarreraRutina(false, "¡Te caíste de la pista!"));
+        }
+        else
+        {
+            Debug.Log($"<color=white><b>[Mecánica]</b></color> {manzana.name} se eliminó por caer al vacío.");
+            Destroy(manzana);
+        }
+    }
+
+    public void ProcesarMeta(bool esJugador)
+    {
+        if (_carreraFinalizada) return;
+
+        if (esJugador)
+        {
+            StartCoroutine(FinalizarCarreraRutina(true, "¡VICTORIA! Eres el rey de la rampa."));
+        }
+        else
+        {
+            StartCoroutine(FinalizarCarreraRutina(false, "¡DERROTA! Un rival cruzó la meta primero."));
+        }
+    }
+
+    private IEnumerator FinalizarCarreraRutina(bool victoria, string mensaje)
+    {
+        _carreraFinalizada = true;
+
+        // Congelamos el tiempo del juego para simular la pantalla fija de fin de juego
+        Time.timeScale = 0.2f;
+
+        if (victoria)
+        {
+            Debug.Log($"<color=green><b>{mensaje}</b></color> Ganas 5 monedas.");
+            // 👉 LLAMADA OFICIAL AL MERCADO PERSISTENTE DE TU GAMEMANAGER
+            if (GameManager.Instance != null) GameManager.Instance.ModificarOroDesdeCarrera(5);
+        }
+        else
+        {
+            Debug.Log($"<color=red><b>{mensaje}</b></color> Pierdes 3 monedas.");
+            // 👉 LLAMADA OFICIAL AL MERCADO PERSISTENTE DE TU GAMEMANAGER
+            if (GameManager.Instance != null) GameManager.Instance.ModificarOroDesdeCarrera(-3);
+        }
+
+        // Esperamos 3 segundos en tiempo real (ya que el timeScale está casi congelado)
+        yield return new WaitForSecondsRealtime(3f);
+
+        // Restauramos el tiempo original antes de cambiar de escena
+        Time.timeScale = 1f;
+
+        // Regresamos automáticamente al huerto a recolectar más manzanas
+        SceneManager.LoadScene(nombreEscenaArbol);
     }
 }

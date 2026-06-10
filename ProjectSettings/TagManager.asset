@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Suelo
   - Arbol
+  - Piso
+  - Meta
   layers:
   - Default
   - TransparentFX
