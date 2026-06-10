@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
     [Header("UI del Canvas (Referencia Dinámica)")]
     public GameObject panelShopUI;
 
+    [Header("Carrera (Manzana Seleccionada)")]
+    [Tooltip("Aquí se guardará la manzana elegida para la carrera actual.")]
+    public FruitData selectedRunnerFruit;
+
+    [Header("Configuración de Escenas")]
+    public string carreraSceneName = "EscenaCarrera"; // Cambia por el nombre exacto de tu escena de carreras
+
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
@@ -25,13 +32,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         playerData.Reset();
-        LoadProgress(); // Llama a la carga estática de abajo
+        LoadProgress();
     }
 
-    // --- FUNCIONES DE GUARDADO ESTÁTICAS PARA ANDROID ---
     public void LoadProgress()
     {
-        // Llamada directa sin usar .Instance ya que tus métodos son estáticos
         SaveManager.LoadPlayer(playerData);
         SaveManager.LoadInventory(inventory, allFruits);
         Debug.Log("<color=green><b>[GameManager]</b></color> Progreso cargado con éxito.");
@@ -39,12 +44,10 @@ public class GameManager : MonoBehaviour
 
     public void SaveProgress()
     {
-        // Llamada directa sin usar .Instance
         SaveManager.SavePlayer(playerData);
         SaveManager.SaveInventory(inventory);
         Debug.Log("<color=green><b>[GameManager]</b></color> Progreso guardado en el dispositivo Android.");
     }
-    // ---------------------------------------------------
 
     void OnEnable() { SceneManager.sceneLoaded += OnSceneLoaded; }
     void OnDisable() { SceneManager.sceneLoaded -= OnSceneLoaded; }
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void EndHarvestAndShowShop()
     {
-        SaveProgress(); // Llama al guardado estático de arriba de forma segura
+        SaveProgress();
 
         if (panelShopUI == null) BuscarPanelTiendaEnEscena();
 
@@ -105,6 +108,46 @@ public class GameManager : MonoBehaviour
                 panelShopUI.SetActive(true);
             }
         }
+    }
+
+    /// <summary>
+    /// Selecciona la manzana campeona, vende el resto automáticamente y carga la carrera.
+    /// </summary>
+    public void SelectFruitForRace(FruitData chosenFruit)
+    {
+        if (chosenFruit == null) return;
+
+        // 1. Guardamos la manzana elegida en memoria para que la escena de carrera la lea
+        selectedRunnerFruit = chosenFruit;
+        Debug.Log($"<color=yellow><b>[GameManager]</b></color> Campeona elegida: {chosenFruit.fruitName} (Velocidad UI: {chosenFruit.velocidadResumen:F0}%)");
+
+        // 2. Procesamos la venta masiva de las manzanas NO elegidas
+        int oroGanadoTotal = 0;
+
+        foreach (FruitData f in inventory.collectedFruits)
+        {
+            // Si no es la que elegimos para correr, se vende
+            if (f != chosenFruit)
+            {
+                oroGanadoTotal += f.shopValue;
+            }
+        }
+
+        // 3. Sumar el dinero al monedero del jugador
+        playerData.gold += oroGanadoTotal;
+        Debug.Log($"<color=gold><b>[Tienda]</b></color> Vendiste el resto de manzanas por +{oroGanadoTotal} de oro. Oro total: {playerData.gold}");
+
+        // 4. Limpiamos el inventario temporal de recolección (ya que unas se vendieron y otra fue a correr)
+        inventory.collectedFruits.Clear();
+
+        // 5. Guardamos los cambios de oro e inventario en Android de inmediato
+        SaveProgress();
+
+        // 6. Cerramos la UI de la tienda por si acaso
+        ResetHarvestRound();
+
+        // 7. ¡SALTAMOS A LA CARRERA!
+        SceneManager.LoadScene(carreraSceneName);
     }
 
     public void ResetHarvestRound()
