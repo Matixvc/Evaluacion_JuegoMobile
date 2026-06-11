@@ -23,15 +23,13 @@ Material:
   m_Name: Suelo
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: 910216737249ed34b9f64bba35017ef2, type: 2}
-  m_ModifiedSerializedProperties: 16
-  m_ValidKeywords:
-  - _RECEIVE_SHADOWS_OFF
-  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses:
@@ -42,13 +40,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _Cutoff: 1
-    - _Metallic: 0
-    - _ReceiveShadows: 0
     - _Smoothness: 0
-    - _SmoothnessTextureChannel: 1
     m_Colors:
     - _BaseColor: {r: 0.23965974, g: 0.4037736, b: 0.04494835, a: 1}
     - _Color: {r: 0.2396597, g: 0.40377358, b: 0.044948325, a: 1}
