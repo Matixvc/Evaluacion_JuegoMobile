@@ -25,16 +25,20 @@ Material:
   disabledShaderPasses:
   - DepthOnly
   - SHADOWCASTER
-  m_LockedProperties: 
+  m_LockedProperties: _BumpMap
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 9ab090bb1ccd473478713b3f6ace062a, type: 3}
 =======
         m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
 >>>>>>> parent of c5f009f (A)
+=======
+        m_Texture: {fileID: 2800000, guid: c513e8d359513104fa995a92d8827a9f, type: 3}
+>>>>>>> parent of 254436f (AvanzesEfct)
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -55,10 +59,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 9ab090bb1ccd473478713b3f6ace062a, type: 3}
 =======
         m_Texture: {fileID: 0}
 >>>>>>> parent of c5f009f (A)
+=======
+        m_Texture: {fileID: 2800000, guid: c513e8d359513104fa995a92d8827a9f, type: 3}
+>>>>>>> parent of 254436f (AvanzesEfct)
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -147,11 +155,15 @@ Material:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
 <<<<<<< HEAD
     - _Color: {r: 1, g: 1, b: 0, a: 1}
+<<<<<<< HEAD
     - _EmissionColor: {r: 1.4980392, g: 1.4980392, b: 0, a: 1}
 =======
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.9547169, g: 0.88338333, b: 0.06304721, a: 1}
 >>>>>>> parent of c5f009f (A)
+=======
+    - _EmissionColor: {r: 2, g: 2, b: 0, a: 1}
+>>>>>>> parent of 254436f (AvanzesEfct)
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

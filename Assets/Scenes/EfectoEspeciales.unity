@@ -261,6 +261,132 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6181718058736680162, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
   m_PrefabInstance: {fileID: 1963260884}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+  m_GameObject: {fileID: 57906307}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 5, y: 5, z: 0}
+  m_LocalScale: {x: 3, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 96727076}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+--- !u!64 &57906309
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57906307}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &57906310
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57906307}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &57906311
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57906307}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &96727075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 96727076}
+  m_Layer: 0
+  m_Name: Cubo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &96727076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96727075}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20, y: 0.02, z: -1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1386984689}
+  - {fileID: 1306781252}
+  - {fileID: 1715096318}
+  - {fileID: 2095251371}
+  - {fileID: 57906308}
+  - {fileID: 866322988}
+  - {fileID: 1606686019}
+  - {fileID: 438655141}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 254436f (AvanzesEfct)
 --- !u!1 &144302400
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +436,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1001 &316093400
+=======
+--- !u!4 &232406683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6880684084172719234, guid: 9d322da76f127344fa8cca7730515f79, type: 3}
+  m_PrefabInstance: {fileID: 790434764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &438655140
+>>>>>>> parent of 254436f (AvanzesEfct)
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -968,6 +1103,7 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 4735900487913369061, guid: 9d322da76f127344fa8cca7730515f79, type: 3}
       propertyPath: m_Name
       value: Manzana_Podrida_Prefab (1)
@@ -977,6 +1113,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of 254436f (AvanzesEfct)
     - target: {fileID: 2294045907614476952, guid: ae6f0c861cd509740a544d154036f205, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -1031,10 +1169,6 @@ PrefabInstance:
     - target: {fileID: 6880684084172719234, guid: 9d322da76f127344fa8cca7730515f79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651553857230342213, guid: ae6f0c861cd509740a544d154036f205, type: 3}
-      propertyPath: m_Constraints
-      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1429,20 +1563,8 @@ PrefabInstance:
     m_Modifications:
 <<<<<<< HEAD
     - target: {fileID: 1679580787334957940, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
-      propertyPath: NoiseModule.damping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1679580787334957940, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
       propertyPath: NoiseModule.strength.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1679580787334957940, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153319203018251509, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
-      propertyPath: m_Constraints
-      value: 32
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181718058736680162, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
       propertyPath: m_LocalScale.x
@@ -1501,10 +1623,6 @@ PrefabInstance:
     - target: {fileID: 6253786383380002808, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
       propertyPath: m_Name
       value: Manzana_Oro_Prefab (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6253786383380002808, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1638,7 +1756,11 @@ SceneRoots:
   - {fileID: 960242329}
   - {fileID: 144302402}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 826874885}
+=======
+  - {fileID: 7251818784809807124}
+>>>>>>> parent of 254436f (AvanzesEfct)
   - {fileID: 1608611194}
   - {fileID: 96727076}
   - {fileID: 1206648410}

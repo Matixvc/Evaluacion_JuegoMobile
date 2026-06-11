@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1427035516}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Reanudar
+        m_MethodName: ClosePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1110,7 +1110,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1427035516}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: CerrarJuego
+        m_MethodName: Salir
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1576,16 +1576,20 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 555027592}
   - {fileID: 1805057778}
   - {fileID: 1525448143}
   - {fileID: 647526680}
   - {fileID: 313589093}
   - {fileID: 798210205}
 <<<<<<< HEAD:Assets/Scenes/EscenaArbol.unity
+<<<<<<< HEAD:Assets/Scenes/EscenaArbol.unity
   - {fileID: 555027592}
 =======
   - {fileID: 1893778650}
 >>>>>>> parent of c5f009f (A):Assets/Scenes/GameScene.unity
+=======
+>>>>>>> parent of 254436f (AvanzesEfct):Assets/Scenes/GameScene.unity
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2533,7 +2537,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1427035516}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Pausar
+        m_MethodName: Toggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2717,22 +2721,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1708798964999791816, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotation.scalar
-      value: 6.283185
-      objectReference: {fileID: 0}
-    - target: {fileID: 1708798964999791816, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotation.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1708798964999791816, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1708798964999791816, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2976841105767991058, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -2740,22 +2728,6 @@ PrefabInstance:
     - target: {fileID: 4028276672755858226, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
       propertyPath: tapCooldown
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5541122200108316436, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotation.scalar
-      value: 6.283185
-      objectReference: {fileID: 0}
-    - target: {fileID: 5541122200108316436, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotation.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5541122200108316436, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5541122200108316436, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8883127918831725674, guid: bae76eb9bf040724a8a0197681359f94, type: 3}
       propertyPath: m_LocalPosition.x

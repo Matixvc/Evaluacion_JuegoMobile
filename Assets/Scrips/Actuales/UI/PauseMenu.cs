@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -50,16 +49,5 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         juegoPausado = false;
         SceneManager.LoadScene("MainMenuScene");
-    }
-    public void CerrarJuego()
-    { 
-        // Cierra la aplicación en versiones compiladas (PC, Android, etc.)
-
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-
-
     }
 }

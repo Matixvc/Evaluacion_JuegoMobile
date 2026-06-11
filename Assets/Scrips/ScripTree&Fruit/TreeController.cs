@@ -9,6 +9,7 @@ public class TreeController : MonoBehaviour
     public FruitSpawner fruitSpawner;
     public Renderer treeRenderer;
 
+<<<<<<< HEAD:Assets/Scrips/ScripTree&Fruit/TreeController.cs
 <<<<<<< HEAD:Assets/Scrips/Actuales/Tree/TreeController.cs
     [Header("Referencias de Audio (SFX)")]
     [Tooltip("Componente AudioSource del árbol.")]
@@ -17,6 +18,8 @@ public class TreeController : MonoBehaviour
     [SerializeField] private AudioClip sonidoGolpeArbol;
     [Range(0f, 1f)][SerializeField] private float volumenSFX = 0.9f;
 
+=======
+>>>>>>> parent of 254436f (AvanzesEfct):Assets/Scrips/Actuales/Tree/TreeController.cs
     [Header("Configuración de Toques")]
     public float tapCooldown = 0.5f;
 =======
@@ -41,6 +44,7 @@ public class TreeController : MonoBehaviour
             _mat = treeRenderer.material;
             _mat.SetFloat("_ShakeIntensity", 0f);
         }
+<<<<<<< HEAD:Assets/Scrips/ScripTree&Fruit/TreeController.cs
 
         // Configuración automática y optimizada del AudioSource para Mobile
         if (audioSource == null) audioSource = GetComponent<AudioSource>();
@@ -52,6 +56,8 @@ public class TreeController : MonoBehaviour
         _mat = treeRenderer.material;
         _mat.SetFloat("_ShakeIntensity", 0f);
 >>>>>>> parent of c5f009f (A):Assets/Scrips/ScripTree&Fruit/TreeController.cs
+=======
+>>>>>>> parent of 254436f (AvanzesEfct):Assets/Scrips/Actuales/Tree/TreeController.cs
     }
 
     void Update()
@@ -78,6 +84,7 @@ public class TreeController : MonoBehaviour
 <<<<<<< HEAD:Assets/Scrips/Actuales/Tree/TreeController.cs
         if (GameManager.Instance != null && GameManager.Instance.IsHarvestLimitReached()) return;
 
+<<<<<<< HEAD:Assets/Scrips/ScripTree&Fruit/TreeController.cs
         // 1. REPRODUCIR AUDIO RECTIVO CON VARIACIÓN (Rúbrica: Coherencia Acústica)
         if (audioSource != null && sonidoGolpeArbol != null)
         {
@@ -89,14 +96,18 @@ public class TreeController : MonoBehaviour
         // 2. EFECTO DE SHADER (Vertex Offset Shake)
 =======
 >>>>>>> parent of c5f009f (A):Assets/Scrips/ScripTree&Fruit/TreeController.cs
+=======
+>>>>>>> parent of 254436f (AvanzesEfct):Assets/Scrips/Actuales/Tree/TreeController.cs
         if (_shakeCoroutine != null) StopCoroutine(_shakeCoroutine);
         _shakeCoroutine = StartCoroutine(ShakeRoutine());
 
-        // 3. EFECTO VISUAL DE PARTÍCULAS (Sistema Foliar)
         if (particulasHojasImpacto != null) particulasHojasImpacto.Play();
 
+<<<<<<< HEAD:Assets/Scrips/ScripTree&Fruit/TreeController.cs
 <<<<<<< HEAD:Assets/Scrips/Actuales/Tree/TreeController.cs
         // 4. INSTANCIACIÓN DE MANZANAS
+=======
+>>>>>>> parent of 254436f (AvanzesEfct):Assets/Scrips/Actuales/Tree/TreeController.cs
         if (fruitSpawner != null)
         {
             fruitSpawner.SpawnFruit();

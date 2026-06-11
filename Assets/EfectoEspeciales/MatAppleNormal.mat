@@ -112,11 +112,15 @@ Material:
     - _EnvironmentReflections: 1
 <<<<<<< HEAD
     - _FresnelPower: 5
+<<<<<<< HEAD
     - _FresnelStrength: 4
 =======
     - _FresnelPower: 6
     - _FresnelStrength: 3
 >>>>>>> parent of c5f009f (A)
+=======
+    - _FresnelStrength: 3
+>>>>>>> parent of 254436f (AvanzesEfct)
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -125,10 +129,14 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
 <<<<<<< HEAD
+<<<<<<< HEAD
     - _PulseSpeed: 6
 =======
     - _PulseSpeed: 3
 >>>>>>> parent of c5f009f (A)
+=======
+    - _PulseSpeed: 4
+>>>>>>> parent of 254436f (AvanzesEfct)
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
