@@ -3,12 +3,13 @@ using System.Collections;
 
 public class TreeController : MonoBehaviour
 {
-    public ParticleSystem particulasHojasImpacto;
+    public ParticleSystem particulasHojasImpacto; 
 
     [Header("Referencias")]
     public FruitSpawner fruitSpawner;
     public Renderer treeRenderer;
 
+<<<<<<< HEAD:Assets/Scrips/Actuales/Tree/TreeController.cs
     [Header("Referencias de Audio (SFX)")]
     [Tooltip("Componente AudioSource del árbol.")]
     [SerializeField] private AudioSource audioSource;
@@ -18,18 +19,23 @@ public class TreeController : MonoBehaviour
 
     [Header("Configuración de Toques")]
     public float tapCooldown = 0.5f;
+=======
+    [Header("Config")]
+    public float tapCooldown = 1f;
+>>>>>>> parent of c5f009f (A):Assets/Scrips/ScripTree&Fruit/TreeController.cs
     private float _lastTapTime = -99f;
     private Camera _cam;
 
-    [Header("Efecto de Agitado (Shader)")]
+    [Header("Shake")]
     public float shakeDuration = 0.6f;
     public float shakeDecay = 2.5f;
     private Material _mat;
-    private Coroutine _shakeCoroutine;
 
+    private Coroutine _shakeCoroutine;
     void Start()
     {
         _cam = Camera.main;
+<<<<<<< HEAD:Assets/Scrips/Actuales/Tree/TreeController.cs
         if (treeRenderer != null)
         {
             _mat = treeRenderer.material;
@@ -42,25 +48,34 @@ public class TreeController : MonoBehaviour
 
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 0f; // Audio 2D nativo para que suene nítido en el canal móvil
+=======
+        _mat = treeRenderer.material;
+        _mat.SetFloat("_ShakeIntensity", 0f);
+>>>>>>> parent of c5f009f (A):Assets/Scrips/ScripTree&Fruit/TreeController.cs
     }
 
     void Update()
     {
-        if (!TryGetTapPosition(out Vector2 tapPosition)) return;
-        if (Time.time - _lastTapTime < tapCooldown) return;
+    
 
-        Ray ray = _cam.ScreenPointToRay(tapPosition);
+        if (Input.touchCount == 0) return;
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase != TouchPhase.Began) return;
+
+        Ray ray = _cam.ScreenPointToRay(touch.position);
         if (!Physics.Raycast(ray, out RaycastHit hit)) return;
-
         if (hit.collider.GetComponent<FruitObject>() != null) return;
         if (hit.collider.gameObject != gameObject) return;
+        if (Time.time - _lastTapTime < tapCooldown) return;
 
         _lastTapTime = Time.time;
         OnTapped();
     }
 
+
     void OnTapped()
     {
+<<<<<<< HEAD:Assets/Scrips/Actuales/Tree/TreeController.cs
         if (GameManager.Instance != null && GameManager.Instance.IsHarvestLimitReached()) return;
 
         // 1. REPRODUCIR AUDIO RECTIVO CON VARIACIÓN (Rúbrica: Coherencia Acústica)
@@ -72,22 +87,31 @@ public class TreeController : MonoBehaviour
         }
 
         // 2. EFECTO DE SHADER (Vertex Offset Shake)
+=======
+>>>>>>> parent of c5f009f (A):Assets/Scrips/ScripTree&Fruit/TreeController.cs
         if (_shakeCoroutine != null) StopCoroutine(_shakeCoroutine);
         _shakeCoroutine = StartCoroutine(ShakeRoutine());
 
         // 3. EFECTO VISUAL DE PARTÍCULAS (Sistema Foliar)
         if (particulasHojasImpacto != null) particulasHojasImpacto.Play();
 
+<<<<<<< HEAD:Assets/Scrips/Actuales/Tree/TreeController.cs
         // 4. INSTANCIACIÓN DE MANZANAS
         if (fruitSpawner != null)
         {
             fruitSpawner.SpawnFruit();
         }
     }
+=======
+        fruitSpawner.SpawnFruit();
+>>>>>>> parent of c5f009f (A):Assets/Scrips/ScripTree&Fruit/TreeController.cs
 
+#if UNITY_ANDROID && !UNITY_EDITOR
+        Handheld.Vibrate();
+#endif
+    }
     IEnumerator ShakeRoutine()
     {
-        if (_mat == null) yield break;
         _mat.SetFloat("_ShakeIntensity", 1f);
         yield return new WaitForSeconds(shakeDuration);
         float t = 1f;
@@ -100,17 +124,21 @@ public class TreeController : MonoBehaviour
         _mat.SetFloat("_ShakeIntensity", 0f);
     }
 
-    private bool TryGetTapPosition(out Vector2 screenPos)
+    // Editor fallback (mouse)
+    static bool TryGetTapPosition(out Vector2 screenPos)
     {
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began) { screenPos = touch.position; return true; }
-            screenPos = default; return false;
+            if (touch.phase != TouchPhase.Began) { screenPos = default; return false; }
+            screenPos = touch.position;
+            return true;
         }
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0)) { screenPos = Input.mousePosition; return true; }
 #endif
-        screenPos = default; return false;
+        screenPos = default;
+        return false;
     }
+
 }

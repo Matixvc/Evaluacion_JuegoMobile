@@ -7,23 +7,17 @@ public static class SaveManager
     const string PlayerKey = "FruitShake_Player";
     const string InventoryKey = "FruitShake_Inventory";
 
-    [Serializable]
-    public class PlayerSave { public int gold; public int score; }
+    [Serializable] public class PlayerSave { public int gold; public int score; }
 
+    // Simplificamos la estructura de guardado a una sola lista de entradas
     [Serializable]
     public class InventorySave
     {
-        public List<FruitSaveEntry> entries = new List<FruitSaveEntry>();
+        public List<FruitSaveEntry> entries = new();
     }
 
     [Serializable]
-    public class FruitSaveEntry
-    {
-        public string fruitName;
-        public float topSpeed;
-        public float angularDrag;
-        public int shopValue;
-    }
+    public class FruitSaveEntry { public string fruitName; public int count; }
 
     // ── Player ──────────────────────────────────────────
     public static void SavePlayer(PlayerData data)
@@ -41,24 +35,18 @@ public static class SaveManager
         data.score = save.score;
     }
 
-    // ── Inventory ───────────────────────────────────────
+    // ── Inventory (Modificado para usar la lista única de carreras) ──────
     public static void SaveInventory(InventoryData inventory)
     {
         if (inventory == null) return;
         var save = new InventorySave();
 
-        // Guardamos las estadísticas exactas e individuales de cada manzana en la lista plana
-        foreach (var fruit in inventory.collectedFruits)
+        // Recorremos la nueva lista unificada de tu InventoryData
+        foreach (var e in inventory.collectedFruits)
         {
-            if (fruit != null)
+            if (e.fruit != null)
             {
-                save.entries.Add(new FruitSaveEntry
-                {
-                    fruitName = fruit.fruitName,
-                    topSpeed = fruit.topSpeed,
-                    angularDrag = fruit.angularDrag,
-                    shopValue = fruit.shopValue
-                });
+                save.entries.Add(new FruitSaveEntry { fruitName = e.fruit.fruitName, count = e.count });
             }
         }
 
@@ -74,19 +62,17 @@ public static class SaveManager
 
         var save = JsonUtility.FromJson<InventorySave>(PlayerPrefs.GetString(InventoryKey));
 
+        // Reconstruimos usando el único bucle de la lista general
         foreach (var e in save.entries)
         {
-            FruitData baseFruit = Find(catalog, e.fruitName);
-            if (baseFruit == null) continue;
+            FruitData fruit = Find(catalog, e.fruitName);
+            if (fruit == null) continue;
 
-            // Reconstruimos la manzana única con los dotes físicos exactos que tenía guardados
-            FruitData uniqueFruit = ScriptableObject.Instantiate(baseFruit);
-            uniqueFruit.name = baseFruit.name;
-            uniqueFruit.topSpeed = e.topSpeed;
-            uniqueFruit.angularDrag = e.angularDrag;
-            uniqueFruit.shopValue = e.shopValue;
-
-            inventory.AddFruit(uniqueFruit);
+            // Agrega la manzana al inventario respetando la cantidad guardada
+            for (int i = 0; i < e.count; i++)
+            {
+                inventory.AddFruit(fruit);
+            }
         }
     }
 

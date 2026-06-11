@@ -12,17 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce43b76e7d838174caab254f338dc463, type: 3}
   m_Name: Apple_Bonus
   m_EditorClassIdentifier: 
-  fruitName: Apple Gold
+  fruitName: Apple
   prefab: {fileID: 6253786383380002808, guid: 5a723a446b8101c44bc412f24e2c5170, type: 3}
-  icon: {fileID: 0}
-  isGoldenFruit: 1
-  spawnWeight: 0.1
-  topSpeed: 0
-  angularDrag: 0
-  shopValue: 3
+  type: 2
+  spawnWeight: 0.05
   scoreValue: 3
-  velocidadResumen: 0
-  minAngularDrag: 0.08
-  maxAngularDrag: 0.15
-  minTopSpeed: 7
-  maxTopSpeed: 15
+  smoothieValue: 25
