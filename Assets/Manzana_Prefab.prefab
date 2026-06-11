@@ -99,6 +99,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 0976f8c8b9311da40912a24667f81a56, type: 2}
+  destroyBelowY: -10
+  sistemaTrail: {fileID: 8805322523919013870}
+  sistemaImpacto: {fileID: 5917853888308980634}
+  sistemaSparkles: {fileID: 0}
+  audioSource: {fileID: -3701448770278233546}
+  sonidoImpactoNormal: {fileID: 8300000, guid: c3620bd48d5020047965e445cbfd58d0, type: 3}
+  sonidoImpactoOro: {fileID: 8300000, guid: 44417a23662370548bee30884fb74e81, type: 3}
+  volumenSFX: 0.8
 --- !u!114 &5774293590633512204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +114,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722465562143075385}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3444b03c7dd5f8c4199dbfd4a59d5607, type: 3}
   m_Name: 

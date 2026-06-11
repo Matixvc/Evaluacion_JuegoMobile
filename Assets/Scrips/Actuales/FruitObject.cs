@@ -3,92 +3,190 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FruitObject : MonoBehaviour
 {
-    [Header("Datos de la Manzana")]
-    public FruitData data; // El ScriptableObject con las stats
+    [Header("Data")]
+    public FruitData data;
+
+    [Header("Configuración")]
+    public float destroyBelowY = -10f; // Por si cae de la isla al vacío
+
+    [Header("Referencias de Efectos (Partículas)")]
+    [Tooltip("Efecto de rastro mientras cae (se detiene al chocar).")]
+    public ParticleSystem sistemaTrail;
+    [Tooltip("Efecto de explosión de hojas/polvo al impactar el suelo.")]
+    public ParticleSystem sistemaImpacto;
+    [Tooltip("Brillos extra (solo para la fruta de oro).")]
+    public ParticleSystem sistemaSparkles;
+
+    [Header("Referencias de Audio (SFX)")]
+    [Tooltip("Componente AudioSource de la fruta.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Sonido de impacto para manzana Normal.")]
+    [SerializeField] private AudioClip sonidoImpactoNormal;
+    [Tooltip("Sonido de impacto brillante para la manzana de Oro.")]
+    [SerializeField] private AudioClip sonidoImpactoOro;
+    [Range(0f, 1f)][SerializeField] private float volumenSFX = 0.8f;
+
+    public bool isCollected { get; private set; }
 
     private Rigidbody _rb;
-    private bool _hasTouchedGround = false;
-    private bool _isInitialized = false;
-
-    void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
-
-    /// <summary>
-    /// Método público para inicializar la canica en la carrera.
-    /// </summary>
-    public void InitializeFruit(FruitData uniqueData)
-    {
-        data = uniqueData;
-
-        if (data != null && _rb != null)
-        {
-            _rb.angularDamping = data.angularDrag;
-            _isInitialized = true;
-        }
-    }
+    private Camera _cam;
+    private bool _haImpactadoSuelo = false;
 
     void Start()
     {
-        if (data != null && !_isInitialized)
+        _rb = GetComponent<Rigidbody>();
+        _cam = Camera.main; // Guardamos la cámara principal para el Touch
+
+        if (data == null)
         {
-            InitializeFruit(data);
+            Debug.LogError($"Falta asignar el FruitData en {gameObject.name}");
+            return;
+        }
+
+        // Configuración automática y óptima del AudioSource para Mobile
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f; // 2D completo para que suene con fuerza y nitidez en celulares
+
+        // Aplicamos la fricción de rotación única de esta manzana
+        if (_rb != null)
+        {
+            _rb.angularDamping = data.angularDrag;
+        }
+
+        // Si es fruta normal y por error tiene sparkles en el prefab, los apagamos
+        if (!data.isGoldenFruit && sistemaSparkles != null)
+        {
+            sistemaSparkles.gameObject.SetActive(false);
         }
     }
 
-    /// <summary>
-    /// ¡RECOLECCIÓN DIRECTA POR TOUCH! 
-    /// Al tocar la manzana en el celular, se procesa su clon, va al inventario y se destruye.
-    /// </summary>
-    private void OnMouseDown()
+    void Update()
     {
-        // Si el GameManager existe y aún no alcanzamos el límite de la ronda...
-        if (GameManager.Instance != null && !GameManager.Instance.IsHarvestLimitReached())
+        // 1. Destruir si cae al vacío
+        if (transform.position.y < destroyBelowY)
         {
+            Destroy(gameObject);
+            return;
+        }
+
+        // 2. DETECCIÓN DE TOUCH: Si el jugador toca la pantalla
+        if (TryGetTapPosition(out Vector2 tapPosition))
+        {
+            Ray ray = _cam.ScreenPointToRay(tapPosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                // Si el rayo del dedo chocó exactamente con esta manzana
+                if (hit.collider.gameObject == gameObject)
+                {
+                    Collect();
+                }
+            }
+        }
+    }
+
+    // LÓGICA DE DETECCIÓN DE SUELO (Partículas, Audio y Vibración)
+    void OnCollisionEnter(Collision collision)
+    {
+        // Recuerda ponerle el Tag "Suelo" al piso de tu escena
+        if (collision.gameObject.CompareTag("Suelo") && !_haImpactadoSuelo)
+        {
+            _haImpactadoSuelo = true;
+
+            // 1. Manejo de Partículas
+            if (sistemaTrail != null) sistemaTrail.Stop();
+            if (sistemaImpacto != null)
+            {
+                sistemaImpacto.transform.rotation = Quaternion.identity;
+                sistemaImpacto.transform.parent = null;
+                sistemaImpacto.Play();
+            }
+
+            // 2. Manejo de Audio Diferenciado (Rúbrica: Coherencia Acústica)
             if (data != null)
             {
-                // 1. Creamos el clon único con sus estadísticas aleatorias para la tienda
-                FruitData uniqueClone = data.CreateUniqueClone();
-                GameManager.Instance.inventory.collectedFruits.Add(uniqueClone);
-            }
+                // Variación sutil de tono para evitar monotonía (Game Feel)
+                audioSource.pitch = Random.Range(0.9f, 1.1f);
 
-            // 2. Le sumamos +1 al contador de recolección
+                if (data.isGoldenFruit)
+                {
+                    // Audio Manzana de Oro (Metálico / Mágico)
+                    if (sonidoImpactoOro != null)
+                    {
+                        audioSource.PlayOneShot(sonidoImpactoOro, volumenSFX);
+                    }
+
+                    // Vibración exclusiva en Android
+#if UNITY_ANDROID && !UNITY_EDITOR
+                    Handheld.Vibrate();
+#endif
+                    Debug.Log($"🌟 ¡Fruta de Oro {data.fruitName} aterrizó!");
+                }
+                else
+                {
+                    // Audio Manzana Normal (Opaco / Orgánico)
+                    if (sonidoImpactoNormal != null)
+                    {
+                        audioSource.PlayOneShot(sonidoImpactoNormal, volumenSFX);
+                    }
+                }
+            }
+        }
+    }
+
+    // Llamado al tocar la manzana con el Touch
+    public void Collect()
+    {
+        // Si ya alcanzamos las 5 manzanas de la ronda, bloqueamos la recolección
+        if (GameManager.Instance != null && GameManager.Instance.IsHarvestLimitReached())
+        {
+            return;
+        }
+
+        if (isCollected) return;
+        isCollected = true;
+
+        if (data == null) { Destroy(gameObject); return; }
+
+        if (GameManager.Instance != null && GameManager.Instance.inventory != null)
+        {
+            // Guardamos la manzana en el inventario
+            GameManager.Instance.inventory.AddFruit(data);
+
+            // Sumamos el puntaje/score del jugador
+            GameManager.Instance.playerData.AddScore(data.scoreValue);
+
+            // Avisamos al GameManager para que cuente la manzana (+1 de 5)
             GameManager.Instance.OnFruitCollected();
-
-            // 3. La eliminamos de la escena porque ya está en la canasta
-            Destroy(gameObject);
-
-            Debug.Log("<color=cyan><b>[Recolección]</b></color> Manzana guardada exitosamente en el inventario.");
         }
+
+        Destroy(gameObject);
     }
 
-    void FixedUpdate()
+    // Lector de posición táctil exclusivo para Android / Editor
+    private bool TryGetTapPosition(out Vector2 screenPos)
     {
-        // El límite de velocidad solo actúa si la manzana fue enviada a correr formalmente
-        if (!_isInitialized || data == null) return;
-
-        float velocidadActual = _rb.linearVelocity.magnitude;
-
-        if (velocidadActual > data.topSpeed)
+        if (Input.touchCount > 0)
         {
-            _rb.linearVelocity = _rb.linearVelocity.normalized * data.topSpeed;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Suelo"))
-        {
-            if (!_hasTouchedGround)
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
             {
-                _hasTouchedGround = true;
-
-                string nombre = data != null ? data.fruitName : "Desconocida";
-                float drag = data != null ? data.angularDrag : 0f;
-
-                Debug.Log($"La manzana {nombre} tocó la pista Bézier con un drag de {drag}");
+                screenPos = touch.position;
+                return true;
             }
+            screenPos = default;
+            return false;
         }
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
+            screenPos = Input.mousePosition;
+            return true;
+        }
+#endif
+        screenPos = default;
+        return false;
     }
 }

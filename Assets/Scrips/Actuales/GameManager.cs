@@ -19,12 +19,15 @@ public class GameManager : MonoBehaviour
     [Header("UI del Canvas (Referencia Dinámica)")]
     public GameObject panelShopUI;
 
+<<<<<<< HEAD
     [Header("Carrera (Manzana Seleccionada)")]
     [Tooltip("Aquí se guardará la manzana elegida para la carrera actual.")]
     public FruitData selectedRunnerFruit;
 
     [Header("Configuración de Escenas")]
     public string carreraSceneName = "EscenaCarrera"; // Cambia por el nombre exacto de tu escena de carreras
+=======
+>>>>>>> parent of e4358f2 (UltimoAvanzes)
     void Awake()
     {
         // 1. Control de Singleton estricto
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+<<<<<<< HEAD
         // 2. ECONOMÍA E INVENTARIO: Limpieza absoluta de raíz
         // Si no existe el registro del jugador, limpiamos TODO (Billetera e Inventario viejo)
         if (!PlayerPrefs.HasKey("FruitShake_Player") || PlayerPrefs.GetInt("PrimeraVezJugando", 1) == 1)
@@ -66,10 +70,16 @@ public class GameManager : MonoBehaviour
             // Si ya hay un juego guardado real, cargamos de forma normal
             LoadProgress();
         }
+=======
+        playerData.Reset();
+        LoadProgress(); // Llama a la carga estática de abajo
+>>>>>>> parent of e4358f2 (UltimoAvanzes)
     }
 
+    // --- FUNCIONES DE GUARDADO ESTÁTICAS PARA ANDROID ---
     public void LoadProgress()
     {
+<<<<<<< HEAD
         // Corregido: Quitamos el .gameObject para que no tire error en la clase estática
         if (PlayerPrefs.HasKey("FruitShake_Player"))
         {
@@ -77,10 +87,17 @@ public class GameManager : MonoBehaviour
             SaveManager.LoadInventory(inventory, allFruits);
             Debug.Log($"<color=green><b>[GameManager]</b></color> Progreso cargado. Oro actual en memoria: {playerData.gold}");
         }
+=======
+        // Llamada directa sin usar .Instance ya que tus métodos son estáticos
+        SaveManager.LoadPlayer(playerData);
+        SaveManager.LoadInventory(inventory, allFruits);
+        Debug.Log("<color=green><b>[GameManager]</b></color> Progreso cargado con éxito.");
+>>>>>>> parent of e4358f2 (UltimoAvanzes)
     }
 
     public void SaveProgress()
     {
+<<<<<<< HEAD
         if (playerData != null && inventory != null)
         {
             SaveManager.SavePlayer(playerData);
@@ -88,7 +105,14 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save(); // Asegura que se guarde físicamente en el disco
             Debug.Log($"<color=green><b>[GameManager]</b></color> Progreso guardado con éxito. Oro respaldado: {playerData.gold}");
         }
+=======
+        // Llamada directa sin usar .Instance
+        SaveManager.SavePlayer(playerData);
+        SaveManager.SaveInventory(inventory);
+        Debug.Log("<color=green><b>[GameManager]</b></color> Progreso guardado en el dispositivo Android.");
+>>>>>>> parent of e4358f2 (UltimoAvanzes)
     }
+    // ---------------------------------------------------
 
     void OnEnable() { SceneManager.sceneLoaded += OnSceneLoaded; }
     void OnDisable() { SceneManager.sceneLoaded -= OnSceneLoaded; }
@@ -128,7 +152,7 @@ public class GameManager : MonoBehaviour
 
     private void EndHarvestAndShowShop()
     {
-        SaveProgress();
+        SaveProgress(); // Llama al guardado estático de arriba de forma segura
 
         if (panelShopUI == null) BuscarPanelTiendaEnEscena();
 
@@ -151,6 +175,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     /// <summary>
     /// Selecciona la manzana campeona, vende el resto con valores fijos y duros (1 y 3) para evitar bugs del inspector.
     /// </summary>
@@ -238,6 +263,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+=======
+>>>>>>> parent of e4358f2 (UltimoAvanzes)
     public void ResetHarvestRound()
     {
         _currentHarvestCount = 0;
